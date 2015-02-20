@@ -1,0 +1,82 @@
+==7421== Helgrind, a thread error detector
+==7421== Copyright (C) 2007-2013, and GNU GPL'd, by OpenWorks LLP et al.
+==7421== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==7421== Command: ./bank_account
+==7421== 
+==7421== ---Thread-Announcement------------------------------------------
+==7421== 
+==7421== Thread #3 was created
+==7421==    at 0x566FFCE: clone (clone.S:74)
+==7421==    by 0x535E199: do_clone.constprop.3 (createthread.c:75)
+==7421==    by 0x535F8BA: pthread_create@@GLIBC_2.2.5 (createthread.c:245)
+==7421==    by 0x4C30C90: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)
+==7421==    by 0x4EEEE3E: std::thread::_M_start_thread(std::shared_ptr<std::thread::_Impl_base>) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7421==    by 0x4014F6: std::thread::thread<void (&)(int, Account&, int), int, std::reference_wrapper<Account>, int>(void (&)(int, Account&, int), int&&, std::reference_wrapper<Account>&&, int&&) (thread:135)
+==7421==    by 0x401081: main (bank_account.cpp:43)
+==7421== 
+==7421== ---Thread-Announcement------------------------------------------
+==7421== 
+==7421== Thread #2 was created
+==7421==    at 0x566FFCE: clone (clone.S:74)
+==7421==    by 0x535E199: do_clone.constprop.3 (createthread.c:75)
+==7421==    by 0x535F8BA: pthread_create@@GLIBC_2.2.5 (createthread.c:245)
+==7421==    by 0x4C30C90: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)
+==7421==    by 0x4EEEE3E: std::thread::_M_start_thread(std::shared_ptr<std::thread::_Impl_base>) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7421==    by 0x4014F6: std::thread::thread<void (&)(int, Account&, int), int, std::reference_wrapper<Account>, int>(void (&)(int, Account&, int), int&&, std::reference_wrapper<Account>&&, int&&) (thread:135)
+==7421==    by 0x401040: main (bank_account.cpp:42)
+==7421== 
+==7421== ----------------------------------------------------------------
+==7421== 
+==7421== Possible data race during read of size 4 at 0xFFEFFF850 by thread #3
+==7421== Locks held: none
+==7421==    at 0x401348: Account::getBalance() const (bank_account.cpp:8)
+==7421==    by 0x400F5A: client(int, Account&, int) (bank_account.cpp:28)
+==7421==    by 0x402B6F: void std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)>::_M_invoke<0ul, 1ul, 2ul>(std::_Index_tuple<0ul, 1ul, 2ul>) (functional:1732)
+==7421==    by 0x4029D4: std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)>::operator()() (functional:1720)
+==7421==    by 0x40296D: std::thread::_Impl<std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)> >::_M_run() (thread:115)
+==7421==    by 0x4EEEBEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7421==    by 0x4C30E26: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)
+==7421==    by 0x535F181: start_thread (pthread_create.c:312)
+==7421==    by 0x567000C: clone (clone.S:111)
+==7421== 
+==7421== This conflicts with a previous write of size 4 by thread #2
+==7421== Locks held: none
+==7421==    at 0x401371: Account::withdraw(int) (bank_account.cpp:16)
+==7421==    by 0x400F81: client(int, Account&, int) (bank_account.cpp:29)
+==7421==    by 0x402B6F: void std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)>::_M_invoke<0ul, 1ul, 2ul>(std::_Index_tuple<0ul, 1ul, 2ul>) (functional:1732)
+==7421==    by 0x4029D4: std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)>::operator()() (functional:1720)
+==7421==    by 0x40296D: std::thread::_Impl<std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)> >::_M_run() (thread:115)
+==7421==    by 0x4EEEBEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7421==    by 0x4C30E26: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)
+==7421==    by 0x535F181: start_thread (pthread_create.c:312)
+==7421== 
+==7421== ----------------------------------------------------------------
+==7421== 
+==7421== Possible data race during read of size 4 at 0xFFEFFF850 by thread #3
+==7421== Locks held: none
+==7421==    at 0x40135B: Account::withdraw(int) (bank_account.cpp:14)
+==7421==    by 0x400F81: client(int, Account&, int) (bank_account.cpp:29)
+==7421==    by 0x402B6F: void std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)>::_M_invoke<0ul, 1ul, 2ul>(std::_Index_tuple<0ul, 1ul, 2ul>) (functional:1732)
+==7421==    by 0x4029D4: std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)>::operator()() (functional:1720)
+==7421==    by 0x40296D: std::thread::_Impl<std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)> >::_M_run() (thread:115)
+==7421==    by 0x4EEEBEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7421==    by 0x4C30E26: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)
+==7421==    by 0x535F181: start_thread (pthread_create.c:312)
+==7421==    by 0x567000C: clone (clone.S:111)
+==7421== 
+==7421== This conflicts with a previous write of size 4 by thread #2
+==7421== Locks held: none
+==7421==    at 0x401371: Account::withdraw(int) (bank_account.cpp:16)
+==7421==    by 0x400F81: client(int, Account&, int) (bank_account.cpp:29)
+==7421==    by 0x402B6F: void std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)>::_M_invoke<0ul, 1ul, 2ul>(std::_Index_tuple<0ul, 1ul, 2ul>) (functional:1732)
+==7421==    by 0x4029D4: std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)>::operator()() (functional:1720)
+==7421==    by 0x40296D: std::thread::_Impl<std::_Bind_simple<void (*(int, std::reference_wrapper<Account>, int))(int, Account&, int)> >::_M_run() (thread:115)
+==7421==    by 0x4EEEBEF: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+==7421==    by 0x4C30E26: ??? (in /usr/lib/valgrind/vgpreload_helgrind-amd64-linux.so)
+==7421==    by 0x535F181: start_thread (pthread_create.c:312)
+==7421== 
+==7421== 
+==7421== For counts of detected and suppressed errors, rerun with: -v
+==7421== Use --history-level=approx or =none to gain increased speed, at
+==7421== the cost of reduced accuracy of conflicting-access information
+==7421== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 126 from 38)
