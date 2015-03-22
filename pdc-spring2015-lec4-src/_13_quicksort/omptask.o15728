@@ -1,0 +1,23 @@
+Elapsed time (serial): 11.666369 sec.
+Elapsed time (nested sections): 4.467994 sec.
+Speedup (nested): 2.61
+Elapsed time (tasks): 6.187356 sec.
+Speedup (tasks): 1.89
+
+Elapsed time (serial): 11.664807 sec.
+Elapsed time (nested sections): 4.435696 sec.
+Speedup (nested): 2.63
+Elapsed time (tasks): 3.585348 sec.
+Speedup (tasks): 3.25
+
+Elapsed time (serial): 11.665180 sec.
+Elapsed time (nested sections): 4.524187 sec.
+Speedup (nested): 2.58
+Elapsed time (tasks): 2.700822 sec.
+Speedup (tasks): 4.32
+
+Elapsed time (serial): 11.665002 sec.
+Elapsed time (nested sections): 4.480665 sec.
+Speedup (nested): 2.60
+Elapsed time (tasks): 2.448787 sec.
+Speedup (tasks): 4.76

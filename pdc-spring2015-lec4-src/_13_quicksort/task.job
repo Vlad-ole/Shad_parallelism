@@ -1,0 +1,25 @@
+#PBS -N omptask
+#PBS -l nodes=1:ppn=8
+#PBS -j oe
+
+cd $PBS_O_WORKDIR
+
+export OMP_NUM_THREADS=2
+./quicksort
+
+export OMP_NUM_THREADS=4
+./quicksort
+
+export OMP_NUM_THREADS=6
+./quicksort
+
+export OMP_NUM_THREADS=8
+./quicksort
+
+
+
+
+
+
+
+

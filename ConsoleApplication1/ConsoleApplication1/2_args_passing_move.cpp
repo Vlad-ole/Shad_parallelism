@@ -3,6 +3,8 @@
 #include <memory>
 #include <thread>
 
+//http://coliru.stacked-crooked.com/ work well
+
 void fun(std::unique_ptr<std::string> sptr)
 {
     std::cout << "1: *sptr = " << *sptr << "\n";

@@ -1,0 +1,9 @@
+#PBS -N mpitask
+#PBS -l nodes=1:ppn=4
+#PBS -j oe
+
+cd $PBS_O_WORKDIR
+
+mpiexec ./jacobi
+
+
